@@ -1,0 +1,92 @@
+## ==========================================
+## .gitignore para ASP.NET Core MVC & EF Core
+## ==========================================
+
+# -------------------------------------------
+# 1. Resultados de Compilação (.NET / C#)
+# -------------------------------------------
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# -------------------------------------------
+# 2. Configurações de IDEs e Editores
+# -------------------------------------------
+# Visual Studio
+.vs/
+*.user
+*.userosscache
+*.sln.docstates
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# JetBrains Rider
+.idea/
+
+# -------------------------------------------
+# 3. Entity Framework Core e Banco de Dados Local
+# -------------------------------------------
+# Bancos SQLite locais (comuns em ambiente de dev)
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Arquivos de Scaffold do ASP.NET
+ScaffoldingReadMe.txt
+
+# -------------------------------------------
+# 4. Testes e Cobertura de Código
+# -------------------------------------------
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+CodeCoverage/
+*.VisualState.xml
+TestResult.xml
+nunit-*.xml
+
+# -------------------------------------------
+# 5. Pacotes e Logs de Build
+# -------------------------------------------
+*.nupkg
+*.snupkg
+*.binlog
+
+# -------------------------------------------
+# 6. Front-end e Libs (se utilizar NPM)
+# -------------------------------------------
+node_modules/
+npm-debug.log*
+
+# -------------------------------------------
+# 7. Arquivos do Sistema Operacional
+# -------------------------------------------
+.DS_Store
+Thumbs.db
+~$*
+*~
+
+# Arquivos de configuração locais/privados
+appsettings.Local.json
+appsettings.Development.local.json
