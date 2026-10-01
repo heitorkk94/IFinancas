@@ -1,0 +1,111 @@
+@model IFinancas.Models.LoginViewModel
+@{
+    ViewData["Title"] = "Entrar";
+}
+
+<style>
+    /* Container para centralizar o formulário na página */
+    .login-container {
+        max-width: 450px;
+        margin: 50px auto;
+        padding: 30px;
+        background-color: #ffffff;
+    }
+
+    .login-container h2 {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    /* Alinhamento dos campos de entrada (empilhados) */
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 16px;
+    }
+
+    .form-group label {
+        margin-bottom: 6px;
+        font-weight: 500;
+    }
+
+    .form-group input {
+        padding: 10px 14px;
+    }
+
+    /* Validações */
+    .form-group .text-danger {
+        font-size: 12px;
+        color: #ff6b6b;
+        margin-top: 2px;
+    }
+
+    /* Botão de envio largura total */
+    .btn-submit {
+        width: 100%;
+        padding: 12px;
+        background: #446fffff;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .btn-submit:hover {
+        opacity: 0.9;
+    }
+
+    .register-link-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .register-link-container a:hover {
+        text-decoration: none;
+    }
+</style>
+
+<div class="login-container">
+    <!-- Mensagem de sucesso do Cadastro (TempData) -->
+    @if (TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["MensagemSucesso"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <h2>Acessar Conta</h2>
+    
+    <form asp-action="Login" method="post">
+        @Html.AntiForgeryToken()
+
+        <!-- Exibe erros de login incorreto -->
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="Email">E-mail</label>
+            <input asp-for="Email" type="email" placeholder="seuemail@exemplo.com" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Senha">Senha</label>
+            <input asp-for="Senha" type="password" placeholder="Digite sua senha" />
+            <span asp-validation-for="Senha" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn-submit">Entrar</button>
+    </form>
+
+    <hr style="border-color: #333;">
+
+    <div class="register-link-container">
+        <p>Não possui uma conta? <a asp-action="Registro">Cadastre-se aqui</a></p>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

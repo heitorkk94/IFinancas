@@ -1,0 +1,113 @@
+@model IFinancas.Models.RegistroViewModel
+@{
+    ViewData["Title"] = "Cadastrar Conta";
+}
+
+<style>
+    /* Container para centralizar o formulário na página */
+    .registro-container {
+        max-width: 450px;
+        margin: 50px auto;
+        padding: 30px;
+        background-color: #fff;
+    }
+
+    .registro-container h2 {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    /* Alinhamento dos campos de entrada (empilhados) */
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 16px;
+    }
+
+    .form-group label {
+        margin-bottom: 6px;
+        font-weight: 500;
+    }
+
+    .form-group input {
+        padding: 10px 14px;
+    }
+
+    /* Validações */
+    .form-group .text-danger {
+        font-size: 12px;
+        color: #ff6b6b;
+        margin-top: 2px;
+    }
+
+    .btn-submit {
+        width: 100%;
+        padding: 12px;
+        background: #446fffff;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .btn-submit:hover {
+        opacity: 0.9;
+    }
+
+    .login-link-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .login-link-container a:hover {
+        text-decoration: none;
+    }
+</style>
+
+<div class="registro-container">
+    <h2>Crie sua Conta no C_Financas!</h2>
+                
+    <form asp-action="Registro" method="post">
+        @Html.AntiForgeryToken()
+
+        <!-- Exibe erros globais de validação -->
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="Nome">Nome Completo</label> 
+            <input asp-for="Nome" placeholder="Ex: João Silva" />
+            <span asp-validation-for="Nome" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Email">E-mail</label>
+            <input asp-for="Email" type="email" placeholder="seuemail@exemplo.com" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Senha">Senha</label>
+            <input asp-for="Senha" type="password" placeholder="Mínimo 6 caracteres" />
+            <span asp-validation-for="Senha" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ConfirmarSenha">Confirmar Senha</label>
+            <input asp-for="ConfirmarSenha" type="password" placeholder="Repita a senha" />
+            <span asp-validation-for="ConfirmarSenha" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn-submit">Cadastrar</button>
+    </form>
+
+    <hr style="border-color: #333;">
+
+    <div class="login-link-container">
+        <p>Já tem uma conta? <a asp-action="Login">Faça login aqui</a></p>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

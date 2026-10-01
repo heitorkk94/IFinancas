@@ -19,14 +19,33 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+                   <ul class="navbar-nav flex-grow-1">
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+    </li>
+</ul>
+<ul class="navbar-nav">
+    @if (User.Identity != null && User.Identity.IsAuthenticated)
+    {
+        <li class="nav-item d-flex align-items-center me-3">
+            <span class="text-dark">Olá, <strong>@User.Identity.Name</strong>!</span>
+        </li>
+        <li class="nav-item">
+            <form asp-controller="Usuario" asp-action="Logout" method="post" class="d-inline">
+                <button type="submit" class="nav-link btn btn-link text-dark border-0 p-0">Sair</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="Usuario" asp-action="Login">Entrar</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="Usuario" asp-action="Registro">Cadastrar</a>
+        </li>
+    }
+</ul>
                 </div>
             </div>
         </nav>
